@@ -1,28 +1,46 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { decorate, observable } from 'mobx';
+import { observer } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
+import store from './store';
+import List from './component/list';
 
 class App extends Component {
+  constructor() {
+    super();
+    let cityname = observable.box("pune");
+    console.log(cityname.get());
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <DevTools />
+        Tasks:
+        <ul>
+          {
+            store.tasks.map((item, index) => {
+              return (
+                <List key={index} data={item} />
+              )
+            })
+          }</ul>
+        <br />
+        <button onClick={() => store.addTask("MIlk")}>+</button>
+        <button onClick={store.removeTask}>-</button><br />
+        Name is : {store.name} {store.boolean + ""}
+        <button onClick={store.changeString}>Chanage String</button><br />
+        Count:{store.count}
+
       </div>
     );
   }
 }
+
+decorate(App, {
+  render: observer,
+  //cityname: observable
+});
 
 export default App;
