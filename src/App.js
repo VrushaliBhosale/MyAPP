@@ -32,6 +32,7 @@ class App extends Component {
         Name is : {store.name} {store.boolean + ""}
         <button onClick={store.changeString}>Chanage String</button><br />
         Count:{store.count}
+         abc
       </div>
     );
   }
