@@ -1,4 +1,6 @@
 image: cypress/browsers:node10.16.0-chrome77
+before_script:
+  - echo hello
 lhci:
   script:
     - npm install
