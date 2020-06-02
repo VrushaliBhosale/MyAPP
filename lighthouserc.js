@@ -5,10 +5,12 @@ module.exports = {
     },
     assert: {
       preset: 'lighthouse:recommended',
-    //   assertions: {
-    //     'uses-rel-preload': 'off',
-    //     'uses-rel-preconnect': 'off',
-    //   },
+      assertions: {
+        'apple-touch-icon': 'off',
+        'installable-manifest': 'off',
+        'splash-screen': 'off',
+        'render-blocking-resources': 'off',
+      },
     },
     upload: {
       target: 'temporary-public-storage',
